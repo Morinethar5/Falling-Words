@@ -52,6 +52,7 @@ public class Word {
     {
         typeIndex++;
         display.RemoveLetter();
+
     }
 
     public bool WordTyped() 

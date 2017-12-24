@@ -31,7 +31,8 @@ public class WordManager : MonoBehaviour {
     public Image heart2;
     public Image heart3;
 
-    public Canvas gameOverUI;
+    public GameObject gameOverUI;
+    public Text gameOverScoreText;
 
     private void Start()
     {
@@ -40,6 +41,8 @@ public class WordManager : MonoBehaviour {
         heart1 = Instantiate(heartPrefab, heartCanvas);
         heart2 = Instantiate(heartPrefab, heartCanvas);
         heart3 = Instantiate(heartPrefab, heartCanvas);
+
+        gameOverUI.SetActive(false);
     }
 
     public void AddWord() 
@@ -84,10 +87,17 @@ public class WordManager : MonoBehaviour {
         }
     }
 
+    public void ClearActiveWord()
+    {
+        hasActiveWord = false;
+        words.Remove(activeWord);
+    }
+
     public void GameOver() 
     {
         Debug.Log("GAME OVER!");
-        gameOverUI.enabled = true;
+        gameOverScoreText.text = score.ToString();
+        gameOverUI.SetActive(true);
     }
 
     public void Retry()

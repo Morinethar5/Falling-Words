@@ -13,6 +13,7 @@ public class CollidingFloor : MonoBehaviour {
         if (col.gameObject.tag == "Word")
         {
             wordManager.lives -= 1;
+            wordManager.ClearActiveWord();
             if (wordManager.lives == 2)
             {
                 Destroy(wordManager.heart1);
