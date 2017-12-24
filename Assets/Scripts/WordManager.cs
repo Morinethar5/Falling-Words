@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WordManager : MonoBehaviour {
 
@@ -11,17 +13,42 @@ public class WordManager : MonoBehaviour {
     private bool hasActiveWord;
     private Word activeWord;
 
+    public Text scoreText;
+    [SerializeField]
+    private int score = 0;
+
+    public Text speedText;
+    [SerializeField]
+    private int speed = 0;
+
+    public int lives = 3;
+    public Image heartPrefab;
+    public Transform heartCanvas;
+
+    public Collider floor;
+
+    public Image heart1;
+    public Image heart2;
+    public Image heart3;
+
+    public Canvas gameOverUI;
+
     private void Start()
     {
-        AddWord();
-        AddWord();
-        AddWord();
+        scoreText.text = score.ToString();
+
+        heart1 = Instantiate(heartPrefab, heartCanvas);
+        heart2 = Instantiate(heartPrefab, heartCanvas);
+        heart3 = Instantiate(heartPrefab, heartCanvas);
     }
 
     public void AddWord() 
     {
         Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord());
-        Debug.Log(word.word);
+        //Debug.Log(word.word);
+
+        speed += 1*Mathf.RoundToInt(GetComponent<WordTimer>().wordDelay);
+        speedText.text = speed.ToString();
 
         words.Add(word);
     }
@@ -52,6 +79,24 @@ public class WordManager : MonoBehaviour {
         {
             hasActiveWord = false;
             words.Remove(activeWord);
+            score += activeWord.GetScore();
+            scoreText.text = score.ToString();
         }
+    }
+
+    public void GameOver() 
+    {
+        Debug.Log("GAME OVER!");
+        gameOverUI.enabled = true;
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("_Main");
+    }
+
+    public void QuitGame() 
+    {
+        Application.Quit();
     }
 }
