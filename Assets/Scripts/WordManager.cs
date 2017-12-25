@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -34,6 +33,8 @@ public class WordManager : MonoBehaviour {
     public GameObject gameOverUI;
     public Text gameOverScoreText;
 
+    public GameObject pausedUI;
+
     private void Start()
     {
         scoreText.text = score.ToString();
@@ -43,6 +44,14 @@ public class WordManager : MonoBehaviour {
         heart3 = Instantiate(heartPrefab, heartCanvas);
 
         gameOverUI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     public void AddWord() 
@@ -95,7 +104,7 @@ public class WordManager : MonoBehaviour {
 
     public void GameOver() 
     {
-        Debug.Log("GAME OVER!");
+        //Debug.Log("GAME OVER!");
         gameOverScoreText.text = score.ToString();
         gameOverUI.SetActive(true);
     }
@@ -108,5 +117,24 @@ public class WordManager : MonoBehaviour {
     public void QuitGame() 
     {
         Application.Quit();
+    }
+
+    public void PauseGame() 
+    {
+        PauseToggle();
+    }
+
+    private void PauseToggle()
+    {
+        pausedUI.SetActive(!pausedUI.activeSelf);
+
+        if (pausedUI.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CollidingFloor : MonoBehaviour {
 
@@ -8,7 +6,7 @@ public class CollidingFloor : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Collider triggered" + col.name);
+        //Debug.Log("Collider triggered" + col.name);
 
         if (col.gameObject.tag == "Word")
         {

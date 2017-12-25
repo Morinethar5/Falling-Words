@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class WordDisplay : MonoBehaviour {
@@ -18,9 +16,9 @@ public class WordDisplay : MonoBehaviour {
     public void RemoveLetter() 
     {
         text.text = text.text.Remove(0,1);
-        text.color = Color.green;
-        Instantiate(typeEffect, text.transform.position, Quaternion.identity);
-        Destroy(typeEffect, 2f); 
+        text.color = Color.red;
+        GameObject type = (GameObject)Instantiate(typeEffect, text.transform.position, Quaternion.identity);
+        Destroy(type, 2f); 
     }
 
     public void RemoveWord() 
