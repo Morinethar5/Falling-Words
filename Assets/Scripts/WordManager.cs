@@ -112,6 +112,10 @@ public class WordManager : MonoBehaviour {
     public void Retry()
     {
         SceneManager.LoadScene("_Main");
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void QuitGame() 

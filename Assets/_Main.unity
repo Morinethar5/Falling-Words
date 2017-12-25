@@ -2163,7 +2163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordManager: {fileID: 1491170278}
-  wordDelay: 1.5
+  wordDelay: 2.75
 --- !u!1 &1500456491
 GameObject:
   m_ObjectHideFlags: 0

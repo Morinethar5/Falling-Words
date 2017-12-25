@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114384880958509354}
-  fallSpeed: 1
+  fallSpeed: 0.7
   typeEffect: {fileID: 1679363577019958, guid: 1ee8c05e3a0ac47ddbeb6197eac374cc, type: 2}
 --- !u!222 &222246439935521432
 CanvasRenderer:
